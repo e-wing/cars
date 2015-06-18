@@ -1,6 +1,10 @@
 <h1>Add Colors</h1>
 	<%= form_for @car do |f| %>
+
+	<%= f.fields_for 'car[color_attributes][]', @color, index: nil do |f| %>
+
 		<%= render partial: 'color_checkboxes', locals: {f: f} %>
+	<%end%>
 
 		<%= f.submit 'SAVE CHANGES',  :class => 'btn btn-green btn-lg btn-block' %>  
 	<%end%>

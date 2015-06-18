@@ -3,7 +3,7 @@
 
 	   <%= f.select(:car_model_id, @car_models.collect.each {|p| [ p.car_model_name, p.id ] }, {}, { multiple: false })%><br><br>
     <%= f.text_field :car_name, placeholder: "ENTER CAR NAME" %><br><br>
-		<%= render partial: 'color_checkboxes', locals: {f: f} %>
+		<%= render partial: 'colors/color_checkboxes', locals: {f: f} %>
 
 		<%= f.submit 'SAVE CHANGES',  :class => 'btn btn-green btn-lg btn-block' %>  
 	<%end%>

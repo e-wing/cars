@@ -1,12 +1,12 @@
 <label class="form-label dk-aqua">Colors for <%= @car.car_name %></label><br>
 <div class="row ">
 
- <%= hidden_field_tag "color[color_ids][]", nil %>
+ <%= hidden_field_tag "car[color_ids][]", nil %>
  <% @sample_colors.each do |sample_color| %>
-   <%= check_box_tag "color[color_ids][]", "#{sample_color.id}" %>  
-   <%= hidden_field_tag "color_texts[]", "#{sample_color.text}" %> 
-   <%= hidden_field_tag "color[color_glosses][]", "#{sample_color.gloss}" %> 
-   <%= label_tag "color[color_texts]", "#{sample_color.text}" %>  <br>
+   <%= check_box_tag "car[color_ids][]", "#{sample_color.id}"  %>  
+   <%= hidden_field_tag "car[]", "#{sample_color.text}" %> 
+   <%= hidden_field_tag "car[color_glosses][]", "#{sample_color.gloss}" %> 
+   <%= label_tag "car[color_texts]", "#{sample_color.text}" %>  <br>
 
  <% end %>
 </div>
