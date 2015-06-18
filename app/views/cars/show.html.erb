@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Car details</h1>
+
+<%= @car.car_name %><br><br>
+	<ul>
+		<% @car.colors.each do |color| %>
+			<li><%= color.color_name %> </li>
+		<% end %>
+	</ul>
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>

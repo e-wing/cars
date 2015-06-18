@@ -1,0 +1,17 @@
+<%= form_for(@sample_color) do |f| %>
+  <% if @sample_color.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sample_color.errors.count, "error") %> prohibited this sample_color from being saved:</h2>
+
+      <ul>
+      <% @sample_color.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
