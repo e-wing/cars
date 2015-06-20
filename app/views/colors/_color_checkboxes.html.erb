@@ -8,8 +8,8 @@
  <%= hidden_field_tag "car[color_ids][]", nil %>
  <% @sample_colors.each do |sample_color| %>
    <%= check_box_tag "car[color_ids][]", "#{sample_color.id}"  %>  
-   <%= hidden_field_tag "car[]", "#{sample_color.value_one}" %> 
-   <%= hidden_field_tag "car[color_glosses][]", "#{sample_color.value_two}" %> 
+   <%= hidden_field_tag "car[color_value_ones][]", "#{sample_color.value_one}" %> 
+   <%= hidden_field_tag "car[color_value_twos][]", "#{sample_color.value_two}" %> 
    <%= label_tag :value_one, "#{sample_color.value_one}" %>  <br>
 
  <% end %>
