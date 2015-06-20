@@ -15,8 +15,9 @@ class ColorsController < ApplicationController
 
   # GET /colors/new
   def new
-    @color = Color.new
+    # @color = Color.new
     @car_model = CarModel.find(@car.car_model_id)
+    @car.colors.build
     @sample_colors = SampleColor.where(car_model_id: @car_model.id) 
   end
 
@@ -35,33 +36,33 @@ class ColorsController < ApplicationController
 
   # POST /colors
   # POST /colors.json
-  def create
-    @color = Color.new(color_params)
+  # def create
+  #   @color = Color.new(color_params)
 
-    respond_to do |format|
-      if @color.save
-        format.html { redirect_to @color, notice: ' color was successfully created.' }
-        format.json { render :show, status: :created, location: @color }
-      else
-        format.html { render :new }
-        format.json { render json: @color.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @color.save
+  #       format.html { redirect_to @color, notice: ' color was successfully created.' }
+  #       format.json { render :show, status: :created, location: @color }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @color.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /colors/1
   # PATCH/PUT /colors/1.json
-  def update
-    respond_to do |format|
-      if @color.update(color_params)
-        format.html { redirect_to @color, notice: 'Color was successfully updated.' }
-        format.json { render :show, status: :ok, location: @color }
-      else
-        format.html { render :edit }
-        format.json { render json: @color.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @color.update(color_params)
+  #       format.html { redirect_to @color, notice: 'Color was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @color }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @color.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /colors/1
   # DELETE /colors/1.json
@@ -85,6 +86,6 @@ class ColorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def color_params
-      params.require(:color).permit(:id, :text, :gloss, {:color_ids => [], :color_texts => [], :color_glosses => []},  )
-    end
+      params.require(:color).permit(:id,  {:color_ids => [], :color_value_ones => [], :color_value_twos => []},  :value_one, :color_value_twos,
+      finishes_attributes: [:id, :value_one]  )    end
 end

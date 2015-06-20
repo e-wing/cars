@@ -1,0 +1,20 @@
+<%= form_for @car do |f| %>
+
+	<%= f.fields_for 'car_colors[]', @color, index: nil do |f| %>
+
+<label class="form-label dk-aqua">Colors for <%= @car.car_name %></label><br>
+<div class="row ">
+
+ <% @sample_colors.each do |sample_color| %>
+   <%= check_box_tag "color_ids[]", sample_color.id,  id: dom_id(sample_color)
+ %>  
+   <%= hidden_field_tag "color_colors[]", sample_color.id,  id: dom_id(sample_color) %> 
+   <%= hidden_field_tag "color_glosses[]",  sample_color.id,  id: dom_id(sample_color) %> 
+   <%= label_tag "color_texts[]",  sample_color.text,  id: dom_id(sample_color) %>  <br>
+
+ <% end %>
+</div>
+ <% end %>
+
+	<%= f.submit 'SAVE CHANGES',  :class => 'btn btn-green btn-lg btn-block' %>  
+	<%end%>

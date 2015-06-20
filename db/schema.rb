@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617144809) do
+ActiveRecord::Schema.define(version: 20150620150255) do
 
   create_table "car_models", force: :cascade do |t|
     t.string   "car_model_name"
@@ -28,8 +28,15 @@ ActiveRecord::Schema.define(version: 20150617144809) do
 
   create_table "colors", force: :cascade do |t|
     t.integer  "car_id"
-    t.string   "text"
-    t.string   "gloss"
+    t.string   "value_one"
+    t.string   "value_two"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "finishes", force: :cascade do |t|
+    t.integer  "color_id"
+    t.string   "value_one"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,6 +47,13 @@ ActiveRecord::Schema.define(version: 20150617144809) do
     t.string   "gloss"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "sample_finishes", force: :cascade do |t|
+    t.integer  "sample_color_id"
+    t.string   "value_one"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

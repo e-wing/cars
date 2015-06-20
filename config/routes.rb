@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sample_finishes
+  resources :finishes
   resources :colors
   resources :cars
   resources :sample_colors

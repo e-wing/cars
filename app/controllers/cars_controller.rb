@@ -52,8 +52,8 @@ class CarsController < ApplicationController
     puts '*' * 400
     @color = Color.new(color_params)
     @car.color_ids = params[:car][:color_ids] || []
-     @car.color_texts = params[:car][:color_texts] || []
-     @car.color_glosses = params[:car][:color_glosses] || []
+     @car.color_value_ones = params[:car][:color_value_ones] || []
+     @car.color_value_twos = params[:car][:color_value_twos] || []
         respond_to do |format|
       if @car.update(car_params)
         format.html { redirect_to @car, notice: 'Car was successfully updated.' }
@@ -83,10 +83,12 @@ class CarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
-      params.require(:car).permit(:id, :car_name, :car_model_id, colors_attributes: [:id,  {:color_ids => [], :color_texts => [], :color_glosses => []},  :text, :gloss]  )
+      params.require(:car).permit(:id, :car_name, :car_model_id, colors_attributes: [:id,  {:color_ids => [], :color_value_ones => [], :color_value_twos => []},  :value_one, :color_value_twos,
+      finishes_attributes: [:id, :value_one] ]  )
     end
 
     def color_params
-      params.require(:color).permit(:id, :text, :gloss, {:color_ids => [], :color_texts => [], :color_glosses => []},  )
+      params.require(:color).permit(:id,  {:color_ids => [], :color_value_ones => [], :color_value_twos => []},  :value_one, :color_value_twos,
+      finishes_attributes: [:id, :value_one]  )
     end
 end
