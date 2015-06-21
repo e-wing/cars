@@ -50,12 +50,17 @@ class CarsController < ApplicationController
   def update
     puts 'RUNNING CAR UPDATE' * 10
     puts '*' * 400
-    @color = Color.new(color_params)
-    @car.color_ids = params[:car][:color_ids] || []
-     @car.color_value_ones = params[:car][:color_value_ones] || []
-     @car.color_value_twos = params[:car][:color_value_twos] || []
+    # byebug
+    # @color = Color.new(color_params)
+    # @car.color_ids = params[:car][:color_ids] || []
+    #  @car.color_value_ones = params[:car][:color_value_ones] || []
+    #  @car.color_value_twos = params[:car][:color_value_twos] || []
+     color_names = SampleColor.where(id: params[:car][:color_ids].select{|c| c.present?}).map{|sc| [sc.value_one, sc.value_two]}
+     colors = color_names.map{|names| Color.create(value_one: names[0], value_two: names[1])}
+     @car.color_ids = colors.map(&:id)
+
         respond_to do |format|
-      if @car.update(car_params)
+      if @car.save
         format.html { redirect_to @car, notice: 'Car was successfully updated.' }
         format.json { render :show, status: :ok, location: @car }
       else
