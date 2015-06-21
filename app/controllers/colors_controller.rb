@@ -15,9 +15,10 @@ class ColorsController < ApplicationController
 
   # GET /colors/new
   def new
-    # @color = Color.new
+     @color =      @car.colors.build
+
     @car_model = CarModel.find(@car.car_model_id)
-    @car.colors.build
+     @car.colors.build
     @sample_colors = SampleColor.where(car_model_id: @car_model.id) 
   end
 
@@ -36,19 +37,19 @@ class ColorsController < ApplicationController
 
   # POST /colors
   # POST /colors.json
-  # def create
-  #   @color = Color.new(color_params)
+  def create
+    @color = Color.new(color_params)
 
-  #   respond_to do |format|
-  #     if @color.save
-  #       format.html { redirect_to @color, notice: ' color was successfully created.' }
-  #       format.json { render :show, status: :created, location: @color }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @color.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+    respond_to do |format|
+      if @color.save
+        format.html { redirect_to @color, notice: ' color was successfully created.' }
+        format.json { render :show, status: :created, location: @color }
+      else
+        format.html { render :new }
+        format.json { render json: @color.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /colors/1
   # PATCH/PUT /colors/1.json
