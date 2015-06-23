@@ -5,7 +5,14 @@
 <%= @car.car_name %><br><br>
 	<ul>
 		<% @car.colors.each do |color| %>
-			<li><%= color.value_one %>  <%= color.value_two %></li>
+			<li><%= color.value_one %>  <%= color.value_two %><br>
+				<ul>
+						<% color.finishes.each do |finish| %>
+							<li><%= finish.value_one %> </li>
+						<% end %>
+					</ul>
+			</li>
+
 		<% end %>
 	</ul>
 

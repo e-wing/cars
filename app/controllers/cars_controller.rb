@@ -24,6 +24,8 @@ class CarsController < ApplicationController
   def edit
     @car_models = CarModel.all
     @sample_colors = SampleColor.where(car_model_id: @car.car_model_id)
+    # @car.color.finishes.build
+
     @color = Color.new
   end
 
@@ -57,8 +59,10 @@ class CarsController < ApplicationController
     #  @car.color_value_twos = params[:car][:color_value_twos] || []
      color_names = SampleColor.where(id: params[:car][:color_ids].select{|c| c.present?}).map{|sc| [sc.value_one, sc.value_two]}
      colors = color_names.map{|names| Color.create(value_one: names[0], value_two: names[1])}
+     finish_names = SampleFinish.where(id: params[:car][:finish_ids].select{|f| f.present?}).map{|sf| [sf.value_one]}
+     finishes = finish_names.map{|names| Finish.create(value_one: names[0])}  
      @car.color_ids = colors.map(&:id)
-
+     @car.finish_ids = finishes.map(&:id)
         respond_to do |format|
       if @car.save
         format.html { redirect_to @car, notice: 'Car was successfully updated.' }
